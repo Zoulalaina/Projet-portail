@@ -25,11 +25,12 @@ public class UnivController {
     }
     //Create
     @PostMapping
-    public String createUniv(@RequestParam("file") MultipartFile file, @RequestParam("nomUniversite") String nomUniversite, @RequestParam("siegeUniversite") String siegeUniversite) throws IOException {
+    public String createUniv(@RequestParam("file") MultipartFile file, @RequestParam("nomUniversite") String nomUniversite, @RequestParam("siegeUniversite") String siegeUniversite, @RequestParam("historique") String historique) throws IOException {
 
         Universite universite = new Universite();
         universite.setNomUniversite(nomUniversite);
         universite.setSiegeUniversite(siegeUniversite);
+        universite.setHistorique(historique);
         universite.setImage(file.getBytes());
         univRepository.save(universite);
         return "BD saved";
@@ -44,10 +45,11 @@ public class UnivController {
 
     //update
     @PutMapping("{id}")
-    public ResponseEntity<Universite> updateUniv(@PathVariable int id,@RequestParam("file") MultipartFile file, @RequestParam("nomUniversite") String nomUniversite, @RequestParam("siegeUniversite") String siegeUniversite) throws IOException {
+    public ResponseEntity<Universite> updateUniv(@PathVariable int id,@RequestParam("file") MultipartFile file, @RequestParam("nomUniversite") String nomUniversite, @RequestParam("siegeUniversite") String siegeUniversite, @RequestParam("historique") String historique) throws IOException {
         Universite universiteUpdated = univRepository.findById(id).orElseThrow(()-> new ResourceNotFound("Universite not exist with id :"+id));
         universiteUpdated.setNomUniversite(nomUniversite);
         universiteUpdated.setSiegeUniversite(siegeUniversite);
+        universiteUpdated.setHistorique(historique);
         universiteUpdated.setImage(file.getBytes());
         univRepository.save(universiteUpdated);
         return ResponseEntity.ok(universiteUpdated);

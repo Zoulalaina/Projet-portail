@@ -16,14 +16,18 @@ public class Universite {
     private String nomUniversite;
     @Column(name = "siege_univ")
     private String siegeUniversite;
+    private String historique;
+
+
 
     private byte[] image;
 
 
-    public Universite(int idUniversite, String nomUniversite, String siegeUniversite, byte[] image) {
+    public Universite(int idUniversite, String nomUniversite, String siegeUniversite,String historique, byte[] image) {
         this.idUniversite = idUniversite;
         this.nomUniversite = nomUniversite;
         this.siegeUniversite = siegeUniversite;
+        this.historique = historique;
         this.image=image;
 
     }
@@ -61,5 +65,12 @@ public class Universite {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+    public String getHistorique() {
+        return historique;
+    }
+
+    public void setHistorique(String historique) {
+        this.historique = historique;
     }
 }
